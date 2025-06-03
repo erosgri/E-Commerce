@@ -1,0 +1,64 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 52px;
+    padding: 0 20px;
+
+    strong {
+        color: var(--primary);
+        transition: filter 0.5s;
+
+        &:hover {
+            filter: brightness(0.8);
+        }
+    }
+
+    nav {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+
+        color: var(--title);
+        text-decoration: none;
+        transition: color 0.2s;
+
+        &:hover {
+            color: var(--text);
+        }
+
+    }
+}
+
+.cartLink {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cartIconContainer {
+    position: relative;
+    display: inline-flex;
+}
+
+    .cartBadge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: var(--red-500);
+        
+        color: var(--white);
+        border-radius: 50%;        
+        width: 16px;
+        height: 16px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
