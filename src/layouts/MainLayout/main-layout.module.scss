@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100dvh;
+}
+
+.contante {
+    display: flex;
+    flex-direction: column;
+
+    min-height: auto;
+    width: 100%;
+
+    padding: 10px;
+}

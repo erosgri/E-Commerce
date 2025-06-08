@@ -5,7 +5,6 @@ import Footer from '../../components/Footer';
 function Home() {
     return (
         <div className={style.container}>
-            <Header />
             <div className={style.banner}>
                 <h1>E-commerce Developer</h1>
             </div>
@@ -61,7 +60,6 @@ function Home() {
                     //isInCart
                 />   
             </div>  
-            <Footer />                    
         </div>
         
     )
