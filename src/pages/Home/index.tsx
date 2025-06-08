@@ -10,7 +10,13 @@ function Home() {
             </div>
 
             <div>
-                <ProductCard />
+                <ProductCard 
+                description="Camiseta casual para o dia a dia" 
+                imageUrl="https://imgcentauro-a.akamaihd.net/1200x1200/93476131A3.jpg" 
+                price={499.99}
+                title="Camiseta Nike"
+                id="1"
+                />
             </div>
         </div>
     )

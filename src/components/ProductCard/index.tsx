@@ -1,16 +1,34 @@
+import styles from './product-card.module.scss';
 
-import styles from './product-card.module.scss'
-export function ProductCard() {
+interface ProductCardProps {
+    id: string;
+    title: string;
+    description: string;
+    price: number;
+    imageUrl: string;
+}
+
+export function ProductCard({
+    description,
+    imageUrl,
+    price,
+    title,
+}: ProductCardProps) {
     return <div className={styles.productCard}>
-        <img src="https://imgcentauro-a.akamaihd.net/1200x1200/93476131A3.jpg"
-            alt="camiseta"
+        <img src={imageUrl}
+            alt={title}
             className={styles.productImage}
         />
         <div className={styles.productInfo}>
             <div className={styles.content}>
-                <h2>Camiseta Nike</h2>
-                <p>Descrição do Produto</p>
-                <span className={styles.price}>Preço R$: 499,99</span>
+                <h2>{title}</h2>
+                <p>{description}</p>
+                <span className={styles.price}>
+                    {price.toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                    })}
+                </span>
             </div>
             <button>Adicionar ao carrinho</button>
         </div>
