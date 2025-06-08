@@ -1,6 +1,7 @@
 import style from './home.module.scss';
 import Header from "../../components/Header";
 import { ProductCard } from "../../components/ProductCard";
+import Footer from '../../components/Footer';
 function Home() {
     return (
         <div className={style.container}>
@@ -58,11 +59,13 @@ function Home() {
                     title="Camiseta Nike"
                     id="1"
                     //isInCart
-                />
-                
-            </div>                      
+                />   
+            </div>  
+            <Footer />                    
         </div>
+        
     )
 }
+
 
 export default Home
