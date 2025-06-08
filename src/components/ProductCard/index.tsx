@@ -1,4 +1,6 @@
+import { Button } from '../ui/Button';
 import styles from './product-card.module.scss';
+import {ShoppingTwoTone} from '@ant-design/icons'
 
 interface ProductCardProps {
     id: string;
@@ -29,8 +31,11 @@ export function ProductCard({
                         currency: 'BRL',
                     })}
                 </span>
-            </div>
-            <button>Adicionar ao carrinho</button>
+            </div> <Button variant="primary">
+                <ShoppingTwoTone/>
+                Adicionar ao Carrinho
+                </Button>
+
         </div>
     </div>
 
