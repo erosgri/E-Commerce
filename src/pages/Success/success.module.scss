@@ -1,3 +1,102 @@
 .container {
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;    
 }
+
+.content {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+
+    h1 {
+        margin: 16px 0;
+        color: var(--success);
+
+    }
+
+    p {
+        color: var(--text);
+        margin-bottom: 16px;
+    }
+}
+
+.icon {
+    font-size: 64px;
+    color: var(--success);
+}
+
+.orderInfo {
+    margin: 16px 0;
+    text-align: left;
+
+    h2 {
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--gray-100);
+    }
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px;
+    border-radius: 4px;
+
+    img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+}
+
+.itemInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+        font-size: 16px;
+    }
+
+    span {
+        color: var(--success);
+        font-weight: bold;
+    }
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-top: 2px solid var(--gray-100);
+    margin-top: 16px;
+    font-size: 18px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    a {
+        text-decoration: none;        
+    }
+}
+
+
+
+
