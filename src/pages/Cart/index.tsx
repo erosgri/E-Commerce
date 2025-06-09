@@ -74,8 +74,9 @@ function Cart() {
                                 <span>499,99</span>
                             </div>
 
-
-                            <Button fullWidth>Finalizar Compra</Button>
+                            <Link to="/success">
+                                <Button fullWidth>Finalizar Compra</Button>
+                            </Link>
 
                             <Link to="/">
                                 <Button variant="secundary" fullWidth>Continuar Comprando</Button>
