@@ -1,3 +1,121 @@
 .container {
-    
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 30px 25px;
+}
+
+.product {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+.imageContainer {
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 8px;
+
+        @media (max-width: 768px) {
+            height: 300px;
+        }
+
+        &:hover {
+            transform: scale(1.2);
+            cursor: zoom-in;
+        }
+    }
+
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h1 {
+        font-size: 32px;
+        color: var(--title);
+        margin-top: 0;
+    }
+
+    .description {
+        font-size: 16px;
+        color: var(--text);
+    }
+
+    .price {
+        font-size: 32px;
+        font-weight: bold;
+        color: var(--primary);
+    }
+}
+
+.details {
+    padding: 16px;
+    border-radius: 8px;
+
+    h2 {
+        font-size: 20px;
+        color: var(--title);
+        margin-bottom: 8px;
+    }
+
+    p {
+        color: var(--text);
+        margin-bottom: 12px;
+    }
+
+    ul {
+        list-style: none;
+        padding-left: 0;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text);
+
+            &::before {
+                content: "-";
+                color: var(--primary);
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.actions {
+    margin-top: 16px;
+
+    button {
+        height: 40px;
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+.relatedProducts {
+    margin-top: 32px;
+    padding: 32px;
+    border-top: 1px solid var(--gray-200);
+
+    h2 {
+        font-size: 24px;
+        color: var(--title);
+        margin-bottom: 32px;
+    }
+}
+
+.carousel {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
 }
