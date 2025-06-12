@@ -1,3 +1,4 @@
+import { useGlobalContext } from '../../context/global';
 import { Button } from '../ui/Button';
 import styles from './product-card.module.scss';
 import { CloseOutlined, ShoppingCartOutlined } from '@ant-design/icons'
@@ -12,12 +13,27 @@ interface ProductCardProps {
 }
 
 export function ProductCard({
+    id,
     description,
     imageUrl,
     price,
     title,
     isInCart
 }: ProductCardProps) {
+
+    const {addToCart, removeFromCart} = useGlobalContext();
+
+    function handleCartAction(event: React.MouseEvent) {
+        event.stopPropagation();
+
+        if(isInCart) {
+            removeFromCart(id)
+            return;
+        }
+        addToCart(id);
+
+    }
+
     return <div className={styles.productCard}>
         <img src={imageUrl}
             alt={title}
@@ -33,9 +49,9 @@ export function ProductCard({
                         currency: 'BRL',
                     })}
                 </span>
-            </div> <Button variant={isInCart ? "danger" : "primary"}>
+            </div> <Button variant={isInCart ? "danger" : "primary"} onClick={handleCartAction}>
 
-                {isInCart ? <><CloseOutlined /> Remover do Carrinho </> : <> <ShoppingCartOutlined /> Adicionar ao Carrinho </> }
+                {isInCart ? <><CloseOutlined /> Remover do Carrinho </> : <> <ShoppingCartOutlined /> Adicionar ao Carrinho </>}
 
             </Button>
 

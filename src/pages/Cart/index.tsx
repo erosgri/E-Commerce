@@ -3,9 +3,20 @@ import { Link } from "react-router-dom";
 import styles from "./cart.module.scss";
 import { Button } from "../../components/ui/Button";
 import { CloseOutlined } from "@ant-design/icons";
+import { useGlobalContext } from "../../context/global";
+import useFormatter from "../../hooks/integrations/utils/use-formatter";
 
 function Cart() {
-    const emptyCart = false;
+
+    const { cart, removeFromCart } = useGlobalContext();
+
+    const { formatMoney } = useFormatter();
+
+    const total = cart.reduce((acc, item) => acc + item.price, 0);
+
+    const formattedTotal = formatMoney(total);
+
+    const emptyCart = Boolean(!cart.length);
 
     return (
         <div className={styles.container}>
@@ -21,49 +32,28 @@ function Cart() {
             ) : (
                 <div className={styles.content}>
                     <div className={styles.cartItems}>
-                        <div className={styles.cartItem}>
-                            <Link to="/product/1" className={styles.productInfo}>
-                                <img src="https://imgcentauro-a.akamaihd.net/1200x1200/93476131A3.jpg" alt="product" />
+                        {cart.map((product) =>(
+
+                            <div className={styles.cartItem}>
+                            <Link to={`/product/${product.id}`} className={styles.productInfo}>
+                                <img src={product.imageUrl} alt={product.title}/>
 
                                 <div>
-                                    <h3>Camiseta Nike</h3>
-                                    <p>Camiseta para o dia a dia</p>
-                                    <span className={styles.price}>R$499,99</span>
+                                    <h3>{product.title}</h3>
+                                    <p>{product.description}</p>
+                                    <span className={styles.price}>{formatMoney(product.price)}</span>
                                 </div>
                             </Link>
-                            <button className={styles.removeButton}><CloseOutlined /></button>
+                            <button className={styles.removeButton} onClick={() => removeFromCart(product.id)}><CloseOutlined /></button>
                         </div>
-                        <div className={styles.cartItem}>
-                            <Link to="/product/1" className={styles.productInfo}>
-                                <img src="https://imgcentauro-a.akamaihd.net/1200x1200/93476131A3.jpg" alt="product" />
-
-                                <div>
-                                    <h3>Camiseta Nike</h3>
-                                    <p>Camiseta para o dia a dia</p>
-                                    <span className={styles.price}>R$499,99</span>
-                                </div>
-                            </Link>
-                            <button className={styles.removeButton}><CloseOutlined /></button>
-                        </div>
-                        <div className={styles.cartItem}>
-                            <Link to="/product/1" className={styles.productInfo}>
-                                <img src="https://imgcentauro-a.akamaihd.net/1200x1200/93476131A3.jpg" alt="product" />
-
-                                <div>
-                                    <h3>Camiseta Nike</h3>
-                                    <p>Camiseta para o dia a dia</p>
-                                    <span className={styles.price}>R$499,99</span>
-                                </div>
-                            </Link>
-                            <button className={styles.removeButton}><CloseOutlined /></button>
-                        </div>
+                        ))}
                     </div>
                     <div className={styles.summary}>
                         <h2>Resumo do Pedido</h2>
                         <div className={styles.summaryContent}>
                             <div className={styles.summaryItem}>
-                                <span>Subtotal</span>
-                                <span>499,99</span>
+                                <span>Sub total</span>
+                                <span>{formattedTotal}</span>
                             </div>
                             <div className={styles.summaryItem}>
                                 <span>Frete</span>
@@ -71,7 +61,7 @@ function Cart() {
                             </div>
                             <div className={styles.summaryTotal}>
                                 <span>Total</span>
-                                <span>499,99</span>
+                                <span>{formattedTotal}</span>
                             </div>
 
                             <Link to="/success">

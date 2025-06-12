@@ -1,9 +1,10 @@
 import { ProductCard } from "../../components/ProductCard";
-import { useGlobalContesxt } from "../../context/global";
+import { useGlobalContext } from "../../context/global";
 import style from './home.module.scss';
 function Home() {
 
-    const { products } = useGlobalContesxt();
+    const { productList } = useGlobalContext();
+
 
     return (
         <div className={style.container}>
@@ -13,7 +14,7 @@ function Home() {
 
             <div className={style.products}>
 
-                {products?.map((product) => (
+                {productList?.map((product) => (
 
                     <ProductCard
                         description={product.description}
@@ -21,7 +22,7 @@ function Home() {
                         price={product.price}
                         title={product.title}
                         id={product.id}
-                        isInCart
+                        isInCart={product.isInCart}
 
                     />
 

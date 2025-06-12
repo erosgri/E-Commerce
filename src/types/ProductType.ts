@@ -8,7 +8,8 @@ export type ProductResponse = {
     deteiledDescription: string;
     price: number;
     imageUrl: string;
-    isInCart: boolean;
+    
+    
 }
 
 export type Product = {
@@ -18,4 +19,6 @@ export type Product = {
     deteiledDescription: string;
     price: number;
     imageUrl: string;
+    isInCart: boolean;
 }
+
