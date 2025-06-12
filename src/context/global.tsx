@@ -1,11 +1,13 @@
 import constate from "constate";
-import { useGetProducts } from "../hooks/integrations/global/mutations"
+import { useAddCheckout, useGetProducts } from "../hooks/integrations/global/mutations"
 import { useEffect, useState } from "react";
 import type { Product } from "../types/ProductType";
 import { useCustomLocalStorage } from "../hooks/integrations/utils/use-custom-local-storage";
+import type { CheckoutResponse } from "../types/CheckoutType";
 
 function useGlobal(){
     const { data: products } = useGetProducts();
+    const {mutateAsync: useAddCheckoutAsync, data: dataCheckout} = useAddCheckout();
 
     const [cart, setCart, removeCart] = useCustomLocalStorage<Product[]> (
         "cart",
@@ -13,6 +15,7 @@ function useGlobal(){
     );
 
     const [productList, setProductList] = useState<Product[]>([]);
+    const [saleResume, setSaleResume] = useState<CheckoutResponse | null>(null);
 
     
 
@@ -51,12 +54,30 @@ function useGlobal(){
         );
     }
 
+    async function addCheckout() {
+        await useAddCheckoutAsync(cart)
+        
+    }
+
+    useEffect(() => {
+
+        if(dataCheckout){
+            setSaleResume(dataCheckout);
+            removeCart();
+        }
+
+    },[dataCheckout])
+
+
+
     return {
         products,
         productList,
         cart,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        addCheckout,
+        saleResume,
     };
 }
 

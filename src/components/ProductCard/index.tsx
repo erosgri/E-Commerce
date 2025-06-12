@@ -1,4 +1,5 @@
 import { useGlobalContext } from '../../context/global';
+import useFormatter from '../../hooks/integrations/utils/use-formatter';
 import { Button } from '../ui/Button';
 import styles from './product-card.module.scss';
 import { CloseOutlined, ShoppingCartOutlined } from '@ant-design/icons'
@@ -21,12 +22,13 @@ export function ProductCard({
     isInCart
 }: ProductCardProps) {
 
-    const {addToCart, removeFromCart} = useGlobalContext();
+    const { addToCart, removeFromCart } = useGlobalContext();
+    const { formatMoney } = useFormatter();
 
     function handleCartAction(event: React.MouseEvent) {
         event.stopPropagation();
 
-        if(isInCart) {
+        if (isInCart) {
             removeFromCart(id)
             return;
         }
@@ -43,12 +45,7 @@ export function ProductCard({
             <div className={styles.content}>
                 <h2>{title}</h2>
                 <p>{description}</p>
-                <span className={styles.price}>
-                    {price.toLocaleString('pt-BR', {
-                        style: 'currency',
-                        currency: 'BRL',
-                    })}
-                </span>
+                <span className={styles.price}>{formatMoney(price)}</span>
             </div> <Button variant={isInCart ? "danger" : "primary"} onClick={handleCartAction}>
 
                 {isInCart ? <><CloseOutlined /> Remover do Carrinho </> : <> <ShoppingCartOutlined /> Adicionar ao Carrinho </>}

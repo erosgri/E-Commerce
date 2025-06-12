@@ -11,9 +11,10 @@ function MainRoutes() {
         <Routes>
             <Route element={<MainLayout />}>
                 <Route element={<Home />} path="/" />
-                <Route element={<Cart />} path="/cart" />
-                <Route element={<Product />} path="/product/:id" />
-                <Route element={<Success />} path="/success" />
+                <Route path="/" element={<Home />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/product/:id" element={<Product />} />
+                <Route path="/success" element={<Success />} />
             </Route>
         </Routes>
     )

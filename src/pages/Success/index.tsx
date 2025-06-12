@@ -2,7 +2,18 @@ import { CheckCircleOutlined, HomeOutlined, ShoppingCartOutlined } from "@ant-de
 import styles from "./success.module.scss";
 import { Link } from "react-router-dom";
 import { Button } from "../../components/ui/Button";
+import { useGlobalContext } from "../../context/global";
+import useFormatter from "../../hooks/integrations/utils/use-formatter";
 function Success() {
+
+    const { saleResume } = useGlobalContext();
+
+    const { formatMoney } = useFormatter();
+
+    const total = saleResume?.products.reduce((acc, item) => acc + item.price, 0) ?? 0;
+
+    const formattedTotal = formatMoney(total);
+
     return (
         <div className={styles.container}>
             <div className={styles.content}>
@@ -14,18 +25,23 @@ function Success() {
                     <h2>Resumo do Pedido</h2>
 
                     <div className={styles.items}>
-                        <div className={styles.item}>
+                        {saleResume?.products.map((product) => (
 
-                            <img src="https://imgcentauro-a.akamaihd.net/1200x1200/93476131A3.jpg" alt="camiseta nike" />
-                            <div className={styles.info}>
-                                <h3>Camiseta Nike</h3>
-                                <span>R$499,99</span>
+                            <div className={styles.item} key={product.id}>
+
+                                <img src={product.imageUrl} alt={product.title} />
+                                <div className={styles.info}>
+                                    <h3>{product.title}</h3>
+                                    <span>{formatMoney(product.price)}</span>
+                                </div>
                             </div>
-                        </div>
+
+                        ))}
+
                     </div>
                     <div className={styles.total}>
                         <strong>Total:</strong>
-                        <strong>R$499,99</strong>
+                        <strong>{formattedTotal}</strong>
                     </div>
                 </div>
                 <div className={styles.buttons}>
