@@ -12,6 +12,6 @@ export function Button({ children, variant = "primary", fullWidth, className, ..
                         ${styles[variant]}
                         ${fullWidth ? styles.fullWidth : ""}
                         ${className ?? ""}`}{...props}>{children}
-            </button>
+    </button>
     );
 }
