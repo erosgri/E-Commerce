@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost";
+const API_BASE_URL = "http://localhost:8008";
 
 export const api = {
   async get<T>(endpoint: string): Promise<T> {

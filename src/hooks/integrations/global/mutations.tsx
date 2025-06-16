@@ -8,8 +8,8 @@ import type { CheckoutResponse } from "../../../types/CheckoutType";
 export const useGetProducts = () => {
   return useQuery<ProductResponse[], Error>({
     queryKey: GLOBAL_KEYS.useGetProducts(),
-    //queryFn: () => api.get<ProductResponse[]>("/products"),
-    queryFn: () => api.get<ProductResponse[]>("/E-Commerce/src/DB/products.php"),
+    queryFn: () => api.get<ProductResponse[]>("/products"),
+    //queryFn: () => api.get<ProductResponse[]>("/E-Commerce/src/DB/products.php"),
     retry: false,
     refetchInterval: false,
     refetchOnWindowFocus: false,
@@ -24,7 +24,7 @@ export function useAddCheckout() {
     mutationKey: [GLOBAL_KEYS.useAddCheckout],
     onError: () => console.log("error..."),
     onSuccess: () => {
-      navigate("/succss");
+      navigate("/success");
     },
   })
 }

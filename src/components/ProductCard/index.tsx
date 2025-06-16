@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../../context/global';
 import useFormatter from '../../hooks/integrations/utils/use-formatter';
 import { Button } from '../ui/Button';
 import styles from './product-card.module.scss';
 import { CloseOutlined, ShoppingCartOutlined } from '@ant-design/icons'
+
 
 interface ProductCardProps {
     id: string;
@@ -24,6 +26,7 @@ export function ProductCard({
 
     const { addToCart, removeFromCart } = useGlobalContext();
     const { formatMoney } = useFormatter();
+    const navigate = useNavigate();
 
     function handleCartAction(event: React.MouseEvent) {
         event.stopPropagation();
@@ -36,10 +39,13 @@ export function ProductCard({
 
     }
 
-    return <div className={styles.productCard}>
+    return <div className={styles.productCard}
+    onClick={() => navigate(`/product/${id}`)}
+    >
         <img src={imageUrl}
             alt={title}
             className={styles.productImage}
+            loading='lazy'
         />
         <div className={styles.productInfo}>
             <div className={styles.content}>
