@@ -3,7 +3,7 @@ function novaConexao($banco = 'ecommerce')
 {
     $servidor = '127.0.0.1';
     $usuario = 'root';
-    $senha = 'carabina22';
+    $senha = '...';
 
     try {
         $conexao = new PDO(
